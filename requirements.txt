@@ -1,0 +1,23 @@
+# Core web framework
+Flask>=2.3.0
+Werkzeug>=2.3.0
+
+# Data processing and analysis
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# Database
+SQLAlchemy>=2.0.0
+PyMySQL>=1.1.0
+
+# HTTP requests
+requests>=2.31.0
+
+# Environment management (recommended for production)
+python-dotenv>=1.0.0
+
+# Additional Flask extensions (optional but recommended)
+Flask-WTF>=1.1.0
+
+# Production WSGI server (simple option)
+gunicorn>=21.0.0 
