@@ -1,0 +1,832 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+/* Reset and base styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Ubuntu', 'Segoe UI', sans-serif;
+    background-color: #f1f3f6;
+    color: #374767;
+    margin: 0;
+    padding: 0;
+    padding-top: 48px;
+    overflow-x: auto;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, div, button, input, select, textarea, label, code {
+    font-family: 'Ubuntu', 'Segoe UI', sans-serif;
+}
+
+/* Code element styling */
+code {
+    font-family: 'Ubuntu', 'Segoe UI', sans-serif !important;
+    font-size: 14px !important;
+    background-color: #f8f9fa;
+    padding: 2px 4px;
+    border-radius: 3px;
+    color: #495057;
+}
+
+/* Override code font size in table cells to match table styling */
+.table td code {
+    font-size: 10px !important;
+}
+
+/* Override Bootstrap's d-flex behavior */
+.d-flex {
+    display: flex !important;
+    position: relative;
+    width: 100%;
+}
+
+/* Fixed sidebar */
+.custom-sidebar {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 250px !important;
+    height: 100vh !important;
+    background: linear-gradient(135deg, #001f3f, #003366) !important;
+    z-index: 1000 !important;
+    overflow-y: auto;
+    border-right: 1px solid #0096ff;
+}
+
+/* Main content area */
+.tab-content-vertical {
+    flex: 1 !important;
+    margin-left: 250px !important;
+    background: #fff;
+    border-radius: 6px;
+    padding: 24px 32px;
+    min-height: 400px;
+    overflow-x: visible;
+}
+
+/* Allow Bootstrap's flex utilities */
+.flex-grow-1 {
+    flex: 1 !important;
+}
+
+/* Tab pane visibility */
+.tab-pane { 
+    display: none; 
+}
+
+.tab-pane[style*="block"] { 
+    display: block; 
+}
+
+/* Parser container */
+.parser-container {
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 24px 32px 18px 32px;
+    border-radius: 6px;
+    width: 100%;
+    margin: 0;
+}
+
+.parser-container-fullwidth {
+    width: 100%;
+    margin: 0;
+}
+
+.parser-form { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 18px; 
+}
+
+.parser-row { 
+    display: flex; 
+    align-items: center; 
+    gap: 2px; 
+}
+
+.parser-label { 
+    width: 100px; 
+    font-size: 14px; 
+}
+
+.parser-input { 
+    width: 100%;
+    max-width: 490px;
+    padding: 6px 0; 
+    border-radius: 4px; 
+    border: 1px solid #ccc; 
+    font-size: 14px; 
+}
+
+.parser-row-parse { 
+    justify-content: flex-start; 
+}
+
+/* Increase spacing between Select Sheet label and dropdown */
+.sheet-select {
+    margin-left: 14px;
+}
+
+.file-chosen {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 8px;
+    font-size: 14px;
+    color: #222;
+    margin-left: 10px;
+    flex: 1;
+    display: inline-block;
+}
+
+/* Menu styles */
+.menu-item {
+    color: #e6f3ff;
+    background: rgba(0, 150, 255, 0.2);
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 5px 0.5rem;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+    font-size: 14px;
+    border-left: 3px solid #0096ff;
+}
+
+.menu-item.active, .menu-item[aria-expanded="true"] {
+    background: rgba(0, 191, 255, 0.3);
+    color: #fff;
+    border-left: 3px solid #00bfff;
+}
+
+.menu-item:hover, .menu-item[aria-expanded="true"] {
+    background: rgba(0, 191, 255, 0.3);
+    color: #fff;
+}
+
+.menu-item:hover i, .menu-item[aria-expanded="true"] i {
+    color: #fff;
+}
+
+.menu-item i {
+    font-size: 1em;
+}
+
+.menu-item[aria-expanded="true"] .bi-chevron-right {
+    transform: rotate(90deg);
+}
+
+.submenu-list {
+    background: linear-gradient(135deg, #001f3f, #003366);
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+}
+
+.submenu-item {
+    display: block;
+    width: 100%;
+    color: #e6f3ff;
+    padding-left: 2.2rem;
+    border-left: none;
+    background: linear-gradient(135deg, #001f3f, #003366);
+    font-weight: 400;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.submenu-item:hover {
+    background: rgba(0, 191, 255, 0.3);
+    color: #fff;
+}
+
+.menu-item .bi-chevron-down {
+    font-size: 0.9em;
+    transition: transform 0.2s;
+    transform: rotate(-90deg);
+}
+
+.menu-item[aria-expanded="true"] .bi-chevron-down {
+    transform: rotate(0deg);
+}
+
+/* Topbar */
+.topbar {
+    background: linear-gradient(135deg, #003366, #001f3f);
+    border-bottom: 1px solid #0096ff;
+    height: 48px;
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.topbar-title {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Ubuntu', 'Segoe UI', sans-serif;
+    font-weight: 600;
+}
+
+h6 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Notifications */
+.alert {
+    font-size: 14px !important;
+    padding: 6px 10px !important;
+}
+
+/* Dropdowns */
+.dropdown-toggle {
+    font-size: 14px !important;
+}
+
+.dropdown-menu {
+    font-size: 14px !important;
+}
+
+.dropdown-item {
+    font-size: 14px !important;
+}
+
+/* Select dropdowns and placeholder text */
+.form-select {
+    font-size: 14px !important;
+}
+
+.form-select option {
+    font-size: 14px !important;
+}
+
+/* Recent uploads - now using same design as Reconciliation History */
+#recent-uploads-list {
+    font-size: 14px !important;
+}
+
+/* Dropdown labels */
+.form-label {
+    font-size: 14px !important;
+}
+
+/* Transaction tables */
+.matched-transactions-wrapper,
+.unmatched-transactions-wrapper {
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    border: 1px solid #e1e6ef;
+    margin-bottom: 18px;
+    overflow-x: visible;
+}
+
+
+
+/* Dynamic table heading rows */
+.matched-header {
+    background-color: #d4edda;
+    padding: 8px 8px;
+    border-bottom: 1px solid #e1e6ef;
+    border-radius: 8px 8px 0 0;
+}
+
+.unmatched-header {
+    background-color: #ffe6cc;
+    padding: 8px 8px;
+    border-bottom: 1px solid #e1e6ef;
+    border-radius: 8px 8px 0 0;
+}
+
+.matched-transactions-table,
+.unmatched-transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+    font-family: 'Ubuntu', 'Segoe UI', sans-serif;
+    background: #fff;
+}
+
+.matched-transactions-table th, 
+.matched-transactions-table td,
+.unmatched-transactions-table th, 
+.unmatched-transactions-table td {
+    border: 1px solid #e1e6ef;
+    font-size: 10px;
+    font-family: 'Ubuntu', 'Segoe UI', sans-serif;
+    padding: 4px 4px;
+    overflow: visible;
+    vertical-align: top !important;
+}
+
+.matched-transactions-table th,
+.unmatched-transactions-table th {
+    background: #f8f9fa;
+    color: #374767;
+    font-weight: 700;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.matched-transactions-table tr:nth-child(even),
+.unmatched-transactions-table tr:nth-child(even) {
+    background: #f6f7fa;
+}
+
+.matched-transactions-table tr:hover,
+.unmatched-transactions-table tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* Table cell formatting */
+.table td, 
+.matched-transactions-table td, 
+.unmatched-transactions-table td {
+    vertical-align: top !important;
+    padding: 4px 4px;
+    line-height: 1.3;
+    font-size: 10px !important;
+    font-family: 'Ubuntu', 'Segoe UI', sans-serif !important;
+}
+
+.table th, .matched-transactions-table th, .unmatched-transactions-table th {
+    vertical-align: top !important;
+    text-align: center;
+    background-color: #F8F9FA;
+    font-weight: bold;
+    font-size: 10px;
+    white-space: nowrap !important;
+    word-wrap: normal !important;
+    overflow-wrap: normal !important;
+    line-height: 1.2 !important;
+}
+
+/* Amount cells */
+.amount-cell {
+    text-align: right !important;
+}
+
+/* Date cells - ensure adequate width to prevent wrapping */
+.input-date-cell,
+.date-cell {
+    white-space: nowrap !important;
+}
+
+/* Voucher Type cells - prevent wrapping */
+.vch-type-cell {
+    white-space: nowrap !important;
+}
+
+/* Universal table column rules - applies to ALL tables */
+/* All columns with uniform minimum width */
+td[data-column="input_date"],
+td[data-column="date"],
+td[data-column="lender_date"],
+td[data-column="borrower_date"],
+td[data-column="vch_type"],
+td[data-column="lender_vch_type"],
+td[data-column="borrower_vch_type"],
+td[data-column="vch_no"],
+td[data-column="debit"],
+td[data-column="credit"],
+td[data-column="amount"],
+td[data-column="lender_debit"],
+td[data-column="borrower_credit"],
+td[data-column="uid"],
+td[data-column="id"],
+td[data-column="lender_uid"],
+td[data-column="borrower_uid"],
+td[data-column="lender"],
+td[data-column="borrower"],
+td[data-column="company"],
+td[data-column="statement_month"],
+td[data-column="statement_year"],
+td[data-column="role"],
+td[data-column="lender_role"],
+td[data-column="borrower_role"],
+td[data-column="entered_by"],
+td[data-column="match_method"],
+td[data-column="audit_info"],
+td[data-column="date_matched"],
+td[data-column="dr_cr"],
+td[data-column="keywords_delete"],
+td[data-column="match_status"],
+td[data-column="matched_with"],
+td[data-column="pair_id"],
+td[data-column="upload_date"],
+td[data-column="record_count"],
+td[data-column="particulars"],
+td[data-column="lender_particulars"],
+td[data-column="borrower_particulars"],
+.input-date-cell,
+.date-cell,
+.vch-type-cell,
+.vch-no-cell,
+.amount-cell,
+.uid-cell,
+.lender-cell,
+.borrower-cell,
+.statement-month-cell,
+.statement-year-cell,
+.role-cell,
+.entered-by-cell {
+    min-width: 80px !important;
+    white-space: nowrap !important;
+    text-align: left !important;
+    vertical-align: top !important;
+}
+
+/* Amount columns - override text alignment */
+td[data-column="debit"],
+td[data-column="credit"],
+td[data-column="amount"],
+td[data-column="lender_debit"],
+td[data-column="borrower_credit"],
+.amount-cell {
+    text-align: right !important;
+}
+
+/* Particulars column - wider with text wrapping */
+td[data-column="particulars"],
+td[data-column="lender_particulars"],
+td[data-column="borrower_particulars"] {
+    min-width: 250px !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+}
+
+/* Audit info column - wider with text wrapping */
+td[data-column="audit_info"] {
+    min-width: 150px !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+}
+
+/* Clean audit info styling - inherits from general table cell rules */
+.audit-info-text {
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
+
+/* Action buttons using Bootstrap btn-group */
+td[data-column="actions"] {
+    vertical-align: top !important;
+    padding-top: 4px !important;
+    text-align: center !important;
+}
+
+/* Ensure action buttons match table font and have square shape */
+td[data-column="actions"] .btn {
+    font-size: 10px !important;
+    font-family: 'Ubuntu', 'Segoe UI', sans-serif !important;
+    font-weight: bold !important;
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    padding: 0 !important;
+    margin: 0 4px 0 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 0 !important;
+    border-radius: 4px !important;
+}
+
+/* Remove margin from the last button */
+td[data-column="actions"] .btn:last-child {
+    margin-right: 0 !important;
+}
+
+/* Badge styles */
+.badge {
+    padding: 3px 6px;
+    border-radius: 3px;
+    font-size: 9px;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-family: 'Ubuntu', 'Segoe UI', sans-serif;
+}
+
+.bg-success {
+    background-color: #00bcd4 !important;
+    color: #fff !important;
+}
+
+.bg-warning {
+    background-color: #ff9800 !important;
+    color: #fff !important;
+}
+
+.bg-secondary {
+    background-color: #0096ff !important;
+    color: #fff !important;
+} 
+
+/* Ocean Theme Button Styles - Colors Only */
+.btn-primary {
+    background: linear-gradient(135deg, #0096ff, #00bcd4) !important;
+    border: none !important;
+    color: white !important;
+    box-shadow: 0 2px 8px rgba(0, 150, 255, 0.3) !important;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #00bfff, #00bcd4) !important;
+    box-shadow: 0 4px 12px rgba(0, 191, 255, 0.4) !important;
+    transform: translateY(-1px) !important;
+}
+
+.btn-secondary {
+    background: rgba(0, 150, 255, 0.1) !important;
+    border: 1px solid #0096ff !important;
+    color: #0096ff !important;
+}
+
+.btn-secondary:hover {
+    background: rgba(0, 191, 255, 0.2) !important;
+    border-color: #00bfff !important;
+    color: #00bfff !important;
+}
+
+.btn-success {
+    background: #00bcd4 !important;
+    border: none !important;
+    color: white !important;
+    box-shadow: 0 2px 8px rgba(0, 188, 212, 0.3) !important;
+}
+
+.btn-warning {
+    background: #ff9800 !important;
+    border: none !important;
+    color: white !important;
+    box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3) !important;
+}
+
+.btn-danger {
+    background: #e74c3c !important;
+    border: none !important;
+    color: white !important;
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3) !important;
+}
+
+.btn-info {
+    background: #17a2b8 !important;
+    border: none !important;
+    color: white !important;
+    box-shadow: 0 2px 8px rgba(23, 162, 184, 0.3) !important;
+}
+
+.btn-light {
+    background: #f8f9fa !important;
+    border: 1px solid #dee2e6 !important;
+    color: #495057 !important;
+}
+
+.btn-dark {
+    background: #343a40 !important;
+    border: none !important;
+    color: white !important;
+    box-shadow: 0 2px 8px rgba(52, 58, 64, 0.3) !important;
+}
+
+/* Outline buttons */
+.btn-outline-primary {
+    color: #0096ff !important;
+    border-color: #0096ff !important;
+    background: transparent !important;
+}
+
+.btn-outline-primary:hover {
+    background: #0096ff !important;
+    color: white !important;
+}
+
+.btn-outline-secondary {
+    color: #6c757d !important;
+    border-color: #6c757d !important;
+    background: transparent !important;
+}
+
+.btn-outline-secondary:hover {
+    background: #6c757d !important;
+    color: white !important;
+}
+
+.btn-outline-success {
+    color: #00bcd4 !important;
+    border-color: #00bcd4 !important;
+    background: transparent !important;
+}
+
+.btn-outline-success:hover {
+    background: #00bcd4 !important;
+    color: white !important;
+}
+
+.btn-outline-warning {
+    color: #ff9800 !important;
+    border-color: #ff9800 !important;
+    background: transparent !important;
+}
+
+.btn-outline-warning:hover {
+    background: #ff9800 !important;
+    color: white !important;
+}
+
+.btn-outline-danger {
+    color: #e74c3c !important;
+    border-color: #e74c3c !important;
+    background: transparent !important;
+}
+
+.btn-outline-danger:hover {
+    background: #e74c3c !important;
+    color: white !important;
+}
+
+.btn-outline-info {
+    color: #17a2b8 !important;
+    border-color: #17a2b8 !important;
+    background: transparent !important;
+}
+
+.btn-outline-info:hover {
+    background: #17a2b8 !important;
+    color: white !important;
+}
+
+/* Link buttons */
+.btn-link {
+    color: #0096ff !important;
+    text-decoration: none !important;
+}
+
+.btn-link:hover {
+    color: #00bfff !important;
+    text-decoration: underline !important;
+}
+
+/* Ocean Theme Card Styles - Colors Only */
+.card {
+    border: 1px solid rgba(0, 150, 255, 0.2) !important;
+    box-shadow: 0 4px 12px rgba(0, 150, 255, 0.1) !important;
+}
+
+.card-header {
+    background: linear-gradient(135deg, rgba(0, 150, 255, 0.1), rgba(0, 188, 212, 0.1)) !important;
+    border-bottom: 1px solid rgba(0, 150, 255, 0.2) !important;
+    color: #001f3f !important;
+}
+
+/* Ocean Theme Form Styles - Colors Only */
+.form-control:focus {
+    border-color: #0096ff !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 150, 255, 0.25) !important;
+}
+
+.form-select:focus {
+    border-color: #0096ff !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 150, 255, 0.25) !important;
+}
+
+/* Ocean Theme Alert Styles - Colors Only */
+.alert-info {
+    background: rgba(0, 150, 255, 0.1) !important;
+    border: 1px solid rgba(0, 150, 255, 0.3) !important;
+    color: #001f3f !important;
+}
+
+/* Ocean Theme Table Header - Colors Only */
+.table thead th {
+    background: linear-gradient(135deg, rgba(0, 150, 255, 0.1), rgba(0, 188, 212, 0.1)) !important;
+    border-bottom: 1px solid rgba(0, 150, 255, 0.2) !important;
+    color: #001f3f !important;
+    font-size: 10px !important;
+    font-family: 'Ubuntu', 'Segoe UI', sans-serif !important;
+    font-weight: bold !important;
+} 
+
+/* Ocean Theme for File Upload Buttons - Colors Only */
+.btn-sm.btn-outline-primary {
+    color: #0096ff !important;
+    border-color: #0096ff !important;
+    background: transparent !important;
+}
+
+.btn-sm.btn-outline-primary:hover {
+    background: #0096ff !important;
+    color: white !important;
+    box-shadow: 0 2px 8px rgba(0, 150, 255, 0.3) !important;
+}
+
+.btn-sm.btn-secondary {
+    background: rgba(0, 150, 255, 0.1) !important;
+    border: 1px solid #0096ff !important;
+    color: #0096ff !important;
+}
+
+.btn-sm.btn-secondary:hover {
+    background: rgba(0, 191, 255, 0.2) !important;
+    border-color: #00bfff !important;
+    color: #00bfff !important;
+}
+
+.btn-sm.btn-outline-danger {
+    color: #e74c3c !important;
+    border-color: #e74c3c !important;
+    background: transparent !important;
+}
+
+.btn-sm.btn-outline-danger:hover {
+    background: #e74c3c !important;
+    color: white !important;
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3) !important;
+}
+
+/* AND Button Styling */
+.and-button {
+    display: inline-block !important;
+    background: linear-gradient(135deg, #0096ff, #00bcd4) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 2px 8px !important;
+    margin: 0 4px !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 1px 3px rgba(0, 150, 255, 0.3) !important;
+    line-height: 1.2 !important;
+    vertical-align: middle !important;
+}
+
+.and-button strong {
+    color: white !important;
+    font-weight: bold !important;
+}
+
+/* More specific selector to ensure it works */
+.alert .d-flex .and-button {
+    display: inline-block !important;
+    background: linear-gradient(135deg, #0096ff, #00bcd4) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 2px 8px !important;
+    margin: 0 4px !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 1px 3px rgba(0, 150, 255, 0.3) !important;
+    line-height: 1.2 !important;
+    vertical-align: middle !important;
+}
+
+.alert .d-flex .and-button strong {
+    color: white !important;
+    font-weight: bold !important;
+}
+
+/* Ensure proper spacing in recent uploads */
+#recent-uploads-list .alert .d-flex {
+    white-space: normal !important;
+}
+
+#recent-uploads-list .alert .d-flex strong {
+    white-space: normal !important;
+}
+
+#recent-uploads-list .alert .d-flex span {
+    white-space: normal !important;
+} 
